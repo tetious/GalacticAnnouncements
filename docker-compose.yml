@@ -8,3 +8,15 @@ services:
       - "5432"
     ports:
       - "15432:5432"
+  api:
+    build:
+      context: .
+      dockerfile: docker/GalacticAnnouncements.API.Dockerfile
+    env_file:
+      - docker.local.env
+    ports:
+      - "5070:5070"
+    expose:
+      - "5070"
+    depends_on:
+      - db
