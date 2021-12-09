@@ -4,7 +4,7 @@ namespace GalacticAnnouncements.API.Models;
 
 public class Announcement : IEntity
 {
-    public Guid Id { get; init; }
+    public Guid Id { get; init; } = Guid.NewGuid();
 
     public string Author { get; init; }
 
@@ -12,7 +12,9 @@ public class Announcement : IEntity
 
     public string Body { get; init; }
 
-    public DateTime CreatedAt { get; init; }
+    public LocalDate Date { get; init; }
 
-    public DateTime? UpdatedAt { get; init; }
+    public Instant CreatedAt { get; init; }
+
+    public Instant? UpdatedAt { get; init; }
 }

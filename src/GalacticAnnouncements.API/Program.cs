@@ -1,11 +1,16 @@
+using GalacticAnnouncements.API;
 using Marten;
+using Marten.NodaTime;
 using Weasel.Postgresql;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddSingleton<IClock>(SystemClock.Instance);
+
 builder.Services.AddMarten(options =>
 {
     options.Connection(builder.Configuration.GetConnectionString("main"));
+    options.UseNodaTime();
     options.CreateDatabasesForTenants(db =>
     {
         db.ForTenant()
@@ -17,7 +22,9 @@ builder.Services.AddMarten(options =>
     options.AutoCreateSchemaObjects = AutoCreate.CreateOrUpdate;
 });
 
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(options => Json.SetSerializerSettings(options.JsonSerializerOptions));
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

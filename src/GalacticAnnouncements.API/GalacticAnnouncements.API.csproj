@@ -7,8 +7,14 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Marten" Version="4.3.0" />
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+        <Using Include="NodaTime"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Marten" Version="4.3.0"/>
+        <PackageReference Include="Marten.NodaTime" Version="4.3.0"/>
+        <PackageReference Include="Marten.PLv8" Version="4.3.0"/>
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3"/>
     </ItemGroup>
 
 </Project>
