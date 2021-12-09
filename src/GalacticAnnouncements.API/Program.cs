@@ -22,6 +22,7 @@ builder.Services.AddMarten(options =>
     options.AutoCreateSchemaObjects = AutoCreate.CreateOrUpdate;
 }).UseLightweightSessions();
 
+builder.Services.AddRouting(options => options.LowercaseUrls = true);
 builder.Services.AddControllers()
     .AddJsonOptions(options => Json.SetSerializerSettings(options.JsonSerializerOptions));
 
