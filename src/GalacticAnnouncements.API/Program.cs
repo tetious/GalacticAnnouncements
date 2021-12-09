@@ -20,7 +20,7 @@ builder.Services.AddMarten(options =>
             .ConnectionLimit(-1);
     });
     options.AutoCreateSchemaObjects = AutoCreate.CreateOrUpdate;
-});
+}).UseLightweightSessions();
 
 builder.Services.AddControllers()
     .AddJsonOptions(options => Json.SetSerializerSettings(options.JsonSerializerOptions));

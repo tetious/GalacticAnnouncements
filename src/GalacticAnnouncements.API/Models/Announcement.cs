@@ -2,7 +2,7 @@ using GalacticAnnouncements.API.Data;
 
 namespace GalacticAnnouncements.API.Models;
 
-public class Announcement : IEntity
+public record Announcement : IEntity
 {
     public Guid Id { get; init; } = Guid.NewGuid();
 
