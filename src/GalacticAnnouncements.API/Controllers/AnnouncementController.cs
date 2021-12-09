@@ -17,6 +17,15 @@ public class AnnouncementController : ApiController
             announcements.TotalItemCount);
     }
 
+    [HttpGet("{id:guid}")]
+    public async Task<ActionResult<AnnouncementDto>> Get(Guid id)
+    {
+        var existing = await this.session.LoadAsync<Announcement>(id);
+        if (existing == null) return this.NotFound();
+
+        return AnnouncementDto.FromAnnouncement(existing);
+    }
+
     [HttpPost]
     public async Task<ActionResult<AnnouncementDto>> Create([FromBody] AnnouncementUpdateRequest request)
     {
