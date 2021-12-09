@@ -1,0 +1,16 @@
+﻿{
+  "$schema": "https://json.schemastore.org/launchsettings.json",
+  "profiles": {
+    "GalacticAnnouncements.API": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": false,
+      "workingDirectory": "$(SolutionDir)",
+      "applicationUrl": "http://localhost:5070",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ConnectionStrings__main": "host=localhost;port=15432;password=postgres;username=postgres;database=galactic"
+      }
+    }
+  }
+}
