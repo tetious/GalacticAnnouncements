@@ -28,8 +28,8 @@ public class AnnouncementController : ApiController
             Date = request.Date,
             CreatedAt = this.clock.GetCurrentInstant()
         };
-        this.session.Insert(announcement);
 
+        this.session.Insert(announcement);
         await this.session.SaveChangesAsync();
 
         return AnnouncementDto.FromAnnouncement(announcement);
@@ -51,10 +51,18 @@ public class AnnouncementController : ApiController
         };
 
         this.session.Update(updated);
-
         await this.session.SaveChangesAsync();
 
         return AnnouncementDto.FromAnnouncement(updated);
+    }
+
+    [HttpDelete("{id:guid}")]
+    public async Task<IActionResult> Delete(Guid id)
+    {
+        this.session.Delete<Announcement>(id);
+        await this.session.SaveChangesAsync();
+
+        return this.Accepted();
     }
 
     private readonly IDocumentSession session;
