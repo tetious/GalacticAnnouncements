@@ -8,12 +8,7 @@
 
     <ItemGroup>
         <PackageReference Include="Marten" Version="4.3.0" />
-        <PackageReference Include="Marten.NodaTime" Version="4.3.0" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Controllers" />
     </ItemGroup>
 
 </Project>

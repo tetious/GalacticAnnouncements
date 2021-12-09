@@ -1,15 +1,28 @@
+using Marten;
+using Weasel.Postgresql;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.Services.AddMarten(options =>
+{
+    options.Connection(builder.Configuration.GetConnectionString("main"));
+    options.CreateDatabasesForTenants(db =>
+    {
+        db.ForTenant()
+            .CheckAgainstPgDatabase()
+            .WithEncoding("UTF-8")
+            .CreatePLV8()
+            .ConnectionLimit(-1);
+    });
+    options.AutoCreateSchemaObjects = AutoCreate.CreateOrUpdate;
+});
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
